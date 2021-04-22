@@ -1,0 +1,19 @@
+includes:
+    - ./vendor/nunomaduro/larastan/extension.neon
+
+parameters:
+
+    paths:
+        - src
+
+    # The level 8 is the highest level
+    level: 7
+
+    ignoreErrors:
+        - '#Access to an undefined property#'
+        - '#Unsafe usage of new static#'
+
+    excludePaths:
+        - ./*/*/FileToBeExcluded.php
+
+    checkMissingIterableValueType: false

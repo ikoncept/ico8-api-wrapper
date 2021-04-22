@@ -1,0 +1,42 @@
+{
+    "name": "ikoncept/ico8-portal",
+    "description": "API wrapper for Icat portals",
+    "type": "library",
+    "authors": [
+        {
+            "name": "Albin N",
+            "email": "albin@myrmalm.se"
+        }
+    ],
+    "require": {
+        "php": "^7.3|^8.0",
+        "illuminate/database": "^7.0|^8.24.0",
+        "illuminate/support": "^7.0.5|^8.0"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^9.3.3",
+        "orchestra/testbench": "^6.4",
+        "nunomaduro/collision": "^5.1",
+        "nunomaduro/larastan": "^0.6.10"
+    },
+    "autoload": {
+        "psr-4": {
+            "Ikoncept\\Ico8Portal\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {"Ikoncept\\Ico8Portal\\Tests\\": "tests"}
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Ikoncept\\Ico8Portal\\Ico8PortalServiceProvider"
+            ],
+            "aliases" : {
+                "Portal" : "Ikoncept\\Ico8Portal\\PortalFacade"
+            }
+        }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}
