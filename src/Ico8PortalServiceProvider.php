@@ -38,7 +38,7 @@ class Ico8PortalServiceProvider extends ServiceProvider
 
             $client = app(PortalClient::class);
 
-            return new Portal($client, $portalConfig['api_key']);
+            return new Portal($client);
         });
 
         $this->app->alias(Portal::class, 'ico8-portal');

@@ -17,6 +17,6 @@ class Ico8PortalServiceProviderTest extends TestCase
 
         $this->expectException(InvalidConfiguration::class);
 
-        Portal::fetchPortalizedMedia();
+        Portal::fetchPortal();
     }
 }

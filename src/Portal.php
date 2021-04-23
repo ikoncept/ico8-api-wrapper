@@ -2,7 +2,6 @@
 
 namespace Ikoncept\Ico8Portal;
 
-use Illuminate\Http\Client\Response;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Traits\Macroable;
 
@@ -18,22 +17,24 @@ class Portal
         $this->client = $client;
     }
 
-    public function fetchPortalizedMedia()
+    public function fetchPortal() : Collection
     {
         $response = $this->performQuery('/portals', []);
 
-        return $response->body();
+        return collect($response);
     }
+
 
     /**
      * Call the query method on the authenticated client.
      *
+     * @return array|null
      */
-    public function performQuery(string $endpoint, array $others = []) : Response
+    public function performQuery(string $endpoint, array $others = [])
     {
         return $this->client->performQuery(
-            $endpoint, $others
+            $endpoint,
+            $others
         );
     }
-
 }

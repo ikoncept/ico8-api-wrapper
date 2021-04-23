@@ -45,11 +45,11 @@ class PortalTest extends TestCase
         Mockery::close();
     }
 
-    /** @test */
-    public function it_can_fetch_portalized_media()
+    /** @test **/
+    public function it_can_fetch_the_portal()
     {
         $expectedArguments = [
-            '/api/portals/1/media',
+            '/portals',
             []
         ];
 
@@ -67,7 +67,7 @@ class PortalTest extends TestCase
                   ]
             ]);
 
-        $response = $this->portal->fetchPortalizedMedia();
+        $response = $this->portal->fetchPortal();
 
         $this->assertInstanceOf(Collection::class, $response);
         $this->assertEquals('The portal name', $response['data']['name']);
