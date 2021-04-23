@@ -79,31 +79,140 @@ class PortalTest extends TestCase
         $this->assertEquals('shared', $response['data']['type']);
     }
 
-    public function it_can_fetch_portalized_media()
+    /** @test **/
+    public function it_can_fetch_portal_media()
     {
         $expectedArguments = [
-            '/api/portals/1/media',
-            []
+            '/portals/1/media',
+            ['per_page' => 15]
         ];
 
         $this->portalClient
             ->shouldReceive('performQuery')->withArgs($expectedArguments)
             ->once()
-            ->andReturn([
-                "data" => [
-                    "id" => 1,
-                    "user_id" => "1",
-                    "name" => "The portal name",
-                    "type" => "shared",
-                    "albums" => [],
-                    "categories" => []
-                  ]
-            ]);
+            ->andReturn($this->sampleMediaResponse());
+        $this->portalClient
+            ->shouldReceive('getPortalId')
+            ->once()
+            ->andReturn('1');
 
-        $response = $this->portal->fetchPortal();
+        $response = $this->portal->fetchPortalMedia(['per_page' => 15]);
 
         $this->assertInstanceOf(Collection::class, $response);
-        $this->assertEquals('The portal name', $response['data']['name']);
-        $this->assertEquals('shared', $response['data']['type']);
+        $this->assertEquals(8, $response['data'][0]['id']);
+        $this->assertEquals('#fff', $response['data'][0]['avg_color']);
+        $this->assertEquals('15', $response['meta']['per_page']);
+    }
+
+    protected function sampleMediaResponse()
+    {
+       return json_decode('{
+        "data": [
+          {
+            "id": 8,
+            "uuid": null,
+            "name": null,
+            "url": "http://localhost/store/",
+            "type": null,
+            "mime_type": null,
+            "folder": null,
+            "category_id": 10,
+            "category": {
+              "id": 10,
+              "name": "Mrs. Addie Green",
+              "slug": "mrs-addie-green"
+            },
+            "created_at": "2021-04-23T09:29:38.000000Z",
+            "filesize": "12894764",
+            "width": null,
+            "height": null,
+            "user_id": null,
+            "avg_color": "#fff",
+            "public": "1",
+            "locked": "0",
+            "files": [],
+            "favorited": 0,
+            "trashed": false,
+            "tags": [],
+            "albums": [
+              {
+                "id": 2,
+                "name": "incidunt cum",
+                "type": "shared",
+                "user_id": null,
+                "count": 2
+              }
+            ]
+          },
+          {
+            "id": 9,
+            "uuid": null,
+            "name": null,
+            "url": "http://localhost/store/",
+            "type": null,
+            "mime_type": null,
+            "folder": null,
+            "category_id": 13,
+            "category": {
+              "id": 13,
+              "name": "Daisha Klein",
+              "slug": "daisha-klein"
+            },
+            "created_at": "2021-04-23T09:29:38.000000Z",
+            "filesize": "37460196",
+            "width": null,
+            "height": null,
+            "user_id": null,
+            "avg_color": "#fff",
+            "public": "1",
+            "locked": "0",
+            "files": [],
+            "favorited": 0,
+            "trashed": false,
+            "tags": [],
+            "albums": [
+              {
+                "id": 2,
+                "name": "incidunt cum",
+                "type": "shared",
+                "user_id": null,
+                "count": 2
+              }
+            ]
+          }
+        ],
+        "links": {
+          "first": "http://localhost/v1/portals/2/media?page=1",
+          "last": "http://localhost/v1/portals/2/media?page=1",
+          "prev": null,
+          "next": null
+        },
+        "meta": {
+          "current_page": 1,
+          "from": 1,
+          "last_page": 1,
+          "links": [
+            {
+              "url": null,
+              "label": "&laquo; Previous",
+              "active": false
+            },
+            {
+              "url": "http://localhost/v1/portals/2/media?page=1",
+              "label": "1",
+              "active": true
+            },
+            {
+              "url": null,
+              "label": "Next &raquo;",
+              "active": false
+            }
+          ],
+          "path": "http://localhost/v1/portals/2/media",
+          "per_page": 15,
+          "to": 7,
+          "total": 7
+        }
+      }', true);
     }
 }

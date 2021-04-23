@@ -24,6 +24,13 @@ class Portal
         return collect($response);
     }
 
+    public function fetchPortalMedia(array $parameters = []) : Collection
+    {
+        $response = $this->performQuery('/portals/' . $this->client->getPortalId() . '/media', $parameters);
+
+        return collect($response);
+    }
+
 
     /**
      * Call the query method on the authenticated client.

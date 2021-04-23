@@ -56,9 +56,9 @@ class PortalClient
         return $response->json();
     }
 
-    public function getPortalId()
+    public function getPortalId() : int
     {
-        return $this->portalId;
+        return (int) $this->portalId;
     }
 
 }
