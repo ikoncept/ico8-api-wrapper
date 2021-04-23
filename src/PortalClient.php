@@ -2,6 +2,7 @@
 
 namespace Ikoncept\Ico8Portal;
 
+use Illuminate\Http\Client\Response;
 use Illuminate\Support\Facades\Http;
 
 class PortalClient
@@ -37,14 +38,14 @@ class PortalClient
         $this->portalId = $portalId;
     }
 
-    public function performQuery(string $endpoint, array $other = []) : array
+    public function performQuery(string $endpoint, array $other = []) : Response
     {
         $response = Http::withHeaders([
             'X-Token' => $this->apiKey,
             'X-Tenant' => $this->tenantId,
         ])->get($this->host . '/' . $endpoint, $other);
 
-        return collect($response)->toArray();
+        return $response;
     }
 
 }
