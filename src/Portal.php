@@ -21,7 +21,7 @@ class Portal
     {
         $response = $this->performQuery('/portals/' . $this->client->getPortalId(), []);
 
-        return collect($response, true);
+        return collect($response);
     }
 
 
