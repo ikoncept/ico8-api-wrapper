@@ -18,7 +18,7 @@ class Portal
         $this->client = $client;
     }
 
-    public function fetchPortalizedMedia() : Collection
+    public function fetchPortalizedMedia()
     {
         $response = $this->performQuery('/portals', []);
 
