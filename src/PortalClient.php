@@ -31,7 +31,7 @@ class PortalClient
     protected $portalId;
 
 
-    public function __construct(string $host, string $apiKey, string $tenantId, mixed $portalId)
+    public function __construct(string $host, string $apiKey, string $tenantId, string $portalId)
     {
         $this->host = $host;
         $this->tenantId = $tenantId;
@@ -58,9 +58,9 @@ class PortalClient
         return $response->json();
     }
 
-    public function getPortalId() : int
+    public function getPortalId() : string
     {
-        return (int) $this->portalId;
+        return $this->portalId;
     }
 
 }
