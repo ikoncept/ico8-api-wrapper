@@ -26,21 +26,23 @@ class PortalClient
      *
      * @var string
      */
-    protected $portal_id;
+    protected $portalId;
 
 
-    public function __construct(string $host, string $apiKey, string $portal_id)
+    public function __construct(string $host, string $apiKey, string $tenantId, int $portalId)
     {
         $this->host = $host;
+        $this->tenantId = $tenantId;
         $this->apiKey = $apiKey;
-        $this->portal_id = $portal_id;
+        $this->portalId = $portalId;
     }
 
     public function performQuery(string $endpoint, array $other = []) : array
     {
-        $response = Http::get('https://example.com/' . $endpoint, [
-            'all-the-stuff' => true
-        ]);
+        $response = Http::withHeaders([
+            'X-Token' => $this->apiKey,
+            'X-Tenant' => $this->tenantId,
+        ])->get($this->host . '/' . $endpoint, $other);
 
         return collect($response)->toArray();
     }

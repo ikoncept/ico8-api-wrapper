@@ -5,6 +5,7 @@ namespace Ikoncept\Ico8Portal\Tests;
 use Ikoncept\Ico8Portal\Exceptions\InvalidConfiguration;
 use Ikoncept\Ico8Portal\Portal;
 use Ikoncept\Ico8Portal\PortalClient;
+use Ikoncept\Ico8Portal\PortalFacade;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Config;
 use Mockery;
@@ -15,8 +16,14 @@ class PortalTest extends TestCase
     /** @var \Ikoncept\Ico8Portal\PortalClient|\Mockery\Mock */
     protected $portalClient;
 
-    /** @var string */
+    /** @var int */
     protected $portalId;
+
+    /** @var string */
+    protected $tenantId;
+
+    /** @var string */
+    protected $host;
 
     /** @var \Ikoncept\Ico8Portal\Portal */
     protected $portal;
@@ -26,8 +33,11 @@ class PortalTest extends TestCase
         $this->portalClient = Mockery::mock(PortalClient::class);
 
         $this->portalId = '91283';
+        $this->tenantId = '2183091-213-1012312-231';
+        $this->apiKey = '231';
+        $this->host = 'https://example.com';
 
-        $this->portal = new Portal($this->portalClient, $this->portalId);
+        $this->portal = new Portal($this->portalClient);
     }
 
     public function tearDown(): void
@@ -39,7 +49,8 @@ class PortalTest extends TestCase
     public function it_can_fetch_portalized_media()
     {
         $expectedArguments = [
-            '/api/portals/1/media'
+            '/api/portals/1/media',
+            []
         ];
 
         $this->portalClient
@@ -62,5 +73,4 @@ class PortalTest extends TestCase
         $this->assertEquals('The portal name', $response['data']['name']);
         $this->assertEquals('shared', $response['data']['type']);
     }
-
 }

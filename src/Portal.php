@@ -11,17 +11,15 @@ class Portal
 
     protected PortalClient $client;
 
-    protected string $viewId;
 
-    public function __construct(PortalClient $client, string $apiKey)
+    public function __construct(PortalClient $client)
     {
         $this->client = $client;
-        $this->apiKey = $apiKey;
     }
 
     public function fetchPortalizedMedia() : Collection
     {
-        $response = $this->performQuery('/api/portals/1/media');
+        $response = $this->performQuery('/api/portals/1/media', []);
 
         return collect($response);
     }
@@ -33,7 +31,7 @@ class Portal
     public function performQuery(string $endpoint, array $others = []) : array
     {
         return $this->client->performQuery(
-            $endpoint
+            $endpoint, $others
         );
     }
 
