@@ -49,7 +49,40 @@ class PortalTest extends TestCase
     public function it_can_fetch_the_portal()
     {
         $expectedArguments = [
-            '/portals',
+            '/portals/1',
+            []
+        ];
+
+        $this->portalClient
+            ->shouldReceive('performQuery')->withArgs($expectedArguments)
+            ->once()
+            ->andReturn([
+                "data" => [
+                    "id" => 1,
+                    "user_id" => "1",
+                    "name" => "The portal name",
+                    "type" => "shared",
+                    "albums" => [],
+                    "categories" => []
+                  ]
+            ]);
+
+        $this->portalClient
+            ->shouldReceive('getPortalId')
+            ->once()
+            ->andReturn('1');
+
+        $response = $this->portal->fetchPortal();
+
+        $this->assertInstanceOf(Collection::class, $response);
+        $this->assertEquals('The portal name', $response['data']['name']);
+        $this->assertEquals('shared', $response['data']['type']);
+    }
+
+    public function it_can_fetch_portalized_media()
+    {
+        $expectedArguments = [
+            '/api/portals/1/media',
             []
         ];
 

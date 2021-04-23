@@ -53,7 +53,12 @@ class PortalClient
             'X-Tenant' => $this->tenantId,
         ])->get($this->host . '/' . $endpoint, $other);
 
-        return $response->body();
+        return $response->json();
+    }
+
+    public function getPortalId()
+    {
+        return $this->portalId;
     }
 
 }

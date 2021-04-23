@@ -19,9 +19,9 @@ class Portal
 
     public function fetchPortal() : Collection
     {
-        $response = $this->performQuery('/portals', []);
+        $response = $this->performQuery('/portals/' . $this->client->getPortalId(), []);
 
-        return collect($response);
+        return collect($response, true);
     }
 
 
