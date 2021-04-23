@@ -11,7 +11,6 @@ class Portal
 
     protected PortalClient $client;
 
-
     public function __construct(PortalClient $client)
     {
         $this->client = $client;
@@ -37,11 +36,11 @@ class Portal
      *
      * @return array|null
      */
-    public function performQuery(string $endpoint, array $others = [])
+    public function performQuery(string $endpoint, array $parameters = [])
     {
         return $this->client->performQuery(
             $endpoint,
-            $others
+            $parameters
         );
     }
 }

@@ -43,15 +43,15 @@ class PortalClient
      * Perform the http request
      *
      * @param string $endpoint
-     * @param array $other
+     * @param array $parameters
      * @return mixed
      */
-    public function performQuery(string $endpoint, array $other = [])
+    public function performQuery(string $endpoint, array $parameters = [])
     {
         $response = Http::withHeaders([
             'X-Token' => $this->apiKey,
             'X-Tenant' => $this->tenantId,
-        ])->get($this->host . $endpoint, $other);
+        ])->get($this->host . $endpoint, $parameters);
 
         return $response->json();
     }
