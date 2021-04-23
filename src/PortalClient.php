@@ -53,6 +53,8 @@ class PortalClient
             'X-Tenant' => $this->tenantId,
         ])->get($this->host . $endpoint, $parameters);
 
+        $response->throw();
+
         return $response->json();
     }
 
