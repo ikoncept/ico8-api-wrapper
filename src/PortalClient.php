@@ -51,7 +51,7 @@ class PortalClient
         $response = Http::withHeaders([
             'X-Token' => $this->apiKey,
             'X-Tenant' => $this->tenantId,
-        ])->get($this->host . '/' . $endpoint, $other);
+        ])->get($this->host . $endpoint, $other);
 
         return $response->json();
     }
