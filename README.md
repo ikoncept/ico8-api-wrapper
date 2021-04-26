@@ -54,7 +54,7 @@ $portal->fetchPortalMedia([
 ])
 ```
 
-**Fetch portal media**
+**Fetch portal information**
 ```php
 $portal->fetchPortal()
 ```
