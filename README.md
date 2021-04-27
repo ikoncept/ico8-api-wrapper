@@ -43,7 +43,7 @@ public function index(Portal $portal, Request $request) : Collection
 ### Available methods
 **Fetch portal media**
 ```php
-$portal->fetchPortalMedia()
+$portal->fetchPortalMedia();
 ```
 _Fetch all related media to the specific portal_
 
@@ -51,7 +51,7 @@ Optional parameters can be passed as below
 ```php
 $portal->fetchPortalMedia([
     'limit' => 15 // Paginate media, showing 15 items per page
-])
+]);
 ```
 
 **Fetch portal information**
@@ -59,5 +59,10 @@ $portal->fetchPortalMedia([
 $portal->fetchPortal()
 ```
 _Fetch portal info, for example the portal name_
+
+**Search portal media**
+```php
+$portal->searchPortalMedia('searchQuery', ['limit' => 5]);
+```
 
 

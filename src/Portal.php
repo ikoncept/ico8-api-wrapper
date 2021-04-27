@@ -30,6 +30,16 @@ class Portal
         return collect($response);
     }
 
+    public function searchPortalMedia(string $searchQuery, array $parameters = []) : Collection
+    {
+        if(! $searchQuery) {
+            return $this->fetchPortalMedia($parameters);
+        }
+        $parameters['search'] = $searchQuery;
+
+        return $this->fetchPortalMedia($parameters);
+    }
+
 
     /**
      * Call the query method on the authenticated client.
