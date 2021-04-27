@@ -69,14 +69,12 @@ $portal->searchPortalMedia('searchQuery', ['limit' => 5]);
 To **filter** the result the parameter array can be used.
 
 Available filters for portalized media are:
-* `filter[category]` _filters media by category id_
 * `filter[album]` _filters media by album id_
 
 Example:
 ```php
 $response = $portal->fetchPortalMedia([
     'limit' => 5,
-    'filter[category]' => 15,
     'filter[album]' => 1,
 ])
 ```
