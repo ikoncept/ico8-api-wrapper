@@ -70,7 +70,7 @@ class PortalTest extends TestCase
         $this->portalClient
             ->shouldReceive('getPortalId')
             ->once()
-            ->andReturn('1')
+            ->andReturn('1');
 
         $response = $this->portal->fetchPortal();
 
