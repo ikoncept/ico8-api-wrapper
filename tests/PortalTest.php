@@ -128,6 +128,29 @@ class PortalTest extends TestCase
         $this->assertCount(1, $response['data']);
     }
 
+    /** @test **/
+    public function it_can_validate_a_password()
+    {
+        $expectedArguments = [
+            '/portals/1/validate',
+            ['password' => 'the_password']
+        ];
+
+        $this->portalClient
+            ->shouldReceive('performQuery')->withArgs($expectedArguments)
+            ->once()
+            ->andReturn([
+                'message' => 'Supplied password was correct'
+            ]);
+        $this->portalClient
+            ->shouldReceive('getPortalId')
+            ->once()
+            ->andReturn('1');
+
+        $response = $this->portal->validatePassword('the_password');
+        $this->assertInstanceOf(Collection::class, $response);
+    }
+
     protected function sampleSearchResponse()
     {
         return json_decode('{

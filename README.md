@@ -98,4 +98,16 @@ $response = $portal->fetchPortalMedia([
 
 _**Note;** only published media will be fetched_
 
+### Password protected portals
+Portals can be password protected to restrict access. Only a password is required to authenticate. If the password provided is correct it is up to the portal app to choose strategy to persist the authenticated state
+
+Example:
+```php
+$response = $portal->validatePassword('password');
+```
+
+If the password is incorrect a `401` response will be returned.
+
+
+
 

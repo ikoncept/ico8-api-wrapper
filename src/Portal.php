@@ -40,6 +40,15 @@ class Portal
         return $this->fetchPortalMedia($parameters);
     }
 
+    public function validatePassword(string $password) : Collection
+    {
+        $response = $this->performQuery('/portals/' . $this->client->getPortalId() . '/validate', [
+            'password' => $password
+        ]);
+
+        return collect($response);
+    }
+
 
     /**
      * Call the query method on the authenticated client.
