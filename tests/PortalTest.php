@@ -109,7 +109,7 @@ class PortalTest extends TestCase
     {
         $expectedArguments = [
             '/portals/1/media',
-            ['search' => 'rolfmedia', 'per_page' => 15]
+            ['filter[search]' => 'rolfmedia', 'per_page' => 15]
         ];
 
         $this->portalClient

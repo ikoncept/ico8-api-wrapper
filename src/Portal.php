@@ -35,7 +35,7 @@ class Portal
         if(! $searchQuery) {
             return $this->fetchPortalMedia($parameters);
         }
-        $parameters['search'] = $searchQuery;
+        $parameters['filter[search]'] = $searchQuery;
 
         return $this->fetchPortalMedia($parameters);
     }
