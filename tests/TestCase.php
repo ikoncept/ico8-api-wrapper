@@ -1,10 +1,10 @@
 <?php
 
-namespace Ikoncept\Ico8Portal\Tests;
+namespace Ikoncept\Ico8\Tests;
 
 use Orchestra\Testbench\TestCase as Orchestra;
-use Ikoncept\Ico8Portal\PortalFacade;
-use Ikoncept\Ico8Portal\Ico8PortalServiceProvider;
+use Ikoncept\Ico8\PortalFacade;
+use Ikoncept\Ico8\Ico8ServiceProvider;
 
 abstract class TestCase extends Orchestra
 {
@@ -21,7 +21,7 @@ abstract class TestCase extends Orchestra
     protected function getPackageProviders($app)
     {
         return [
-            Ico8PortalServiceProvider::class,
+            Ico8ServiceProvider::class,
         ];
     }
 

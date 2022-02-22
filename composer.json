@@ -1,5 +1,5 @@
 {
-    "name": "ikoncept/ico8-portal",
+    "name": "ikoncept/ico8-api-wrapper",
     "description": "API wrapper for Icat portals",
     "type": "library",
     "authors": [
@@ -10,8 +10,8 @@
     ],
     "require": {
         "php": "^7.3|^8.0",
-        "illuminate/database": "^7.0|^8.24.0",
-        "illuminate/support": "^7.0.5|^8.0"
+        "illuminate/database": "^7.0|^8.24.0|^9.0",
+        "illuminate/support": "^7.0.5|^8.0|^9.0"
     },
     "require-dev": {
         "phpunit/phpunit": "^9.3.3",
@@ -21,19 +21,21 @@
     },
     "autoload": {
         "psr-4": {
-            "Ikoncept\\Ico8Portal\\": "src/"
+            "Ikoncept\\Ico8\\": "src/"
         }
     },
     "autoload-dev": {
-        "psr-4": {"Ikoncept\\Ico8Portal\\Tests\\": "tests"}
+        "psr-4": {
+            "Ikoncept\\Ico8\\Tests\\": "tests"
+        }
     },
     "extra": {
         "laravel": {
             "providers": [
-                "Ikoncept\\Ico8Portal\\Ico8PortalServiceProvider"
+                "Ikoncept\\Ico8\\Ico8ServiceProvider"
             ],
-            "aliases" : {
-                "Portal" : "Ikoncept\\Ico8Portal\\PortalFacade"
+            "aliases": {
+                "Media": "Ikoncept\\Ico8\\Facades\\Media"
             }
         }
     },

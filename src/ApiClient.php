@@ -1,12 +1,12 @@
 <?php
 
-namespace Ikoncept\Ico8Portal;
+namespace Ikoncept\Ico8;
 
 use Illuminate\Http\Client\Response;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Http;
 
-class PortalClient
+class ApiClient
 {
 
     /**
@@ -23,20 +23,13 @@ class PortalClient
      */
     protected $host;
 
-    /**
-     * Portal id
-     *
-     * @var string
-     */
-    protected $portalId;
 
 
-    public function __construct(string $host, string $apiKey, string $tenantId, string $portalId)
+    public function __construct(string $host, string $apiKey, string $tenantId)
     {
         $this->host = $host;
         $this->tenantId = $tenantId;
         $this->apiKey = $apiKey;
-        $this->portalId = $portalId;
     }
 
     /**
@@ -53,14 +46,10 @@ class PortalClient
             'X-Tenant' => $this->tenantId,
         ])->get($this->host . $endpoint, $parameters);
 
+        dd($response);
+
         $response->throw();
 
         return $response->json();
     }
-
-    public function getPortalId() : string
-    {
-        return $this->portalId;
-    }
-
 }

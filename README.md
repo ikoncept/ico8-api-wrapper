@@ -1,16 +1,16 @@
-# ikoncept/ico8-portal
+# ikoncept/ico8-api-wrapper
 
 This package is used for accessing portal data from Icat Server.
 
 ## Installation
 Install the package
 ```bash
-composer require ikoncept/ico8-portal
+composer require ikoncept/ico8-api-wrapper
 ```
 
 Publish the configuration
 ```bash
-php artisan vendor:publish --provider="Ikoncept\Ico8Portal\Ico8PortalServiceProvider"
+php artisan vendor:publish --provider="Ikoncept\Ico8\Ico8ServiceProvider"
 ```
 
 Set the required environement variables
@@ -27,7 +27,7 @@ Import the `Portal` client with typehinting
 /**
  * Display a listing of the resource.
  *
- * @param \Ikoncept\Ico8Portal\Portal $portal
+ * @param \Ikoncept\Ico8\Portal $portal
  * @param \Illuminate\Http\Response $request
  * @return \Illuminate\Support\Collection
  *

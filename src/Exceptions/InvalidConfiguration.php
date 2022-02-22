@@ -1,6 +1,6 @@
 <?php
 
-namespace Ikoncept\Ico8Portal\Exceptions;
+namespace Ikoncept\Ico8\Exceptions;
 
 use Exception;
 

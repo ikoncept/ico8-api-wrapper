@@ -1,11 +1,11 @@
 <?php
 
-namespace Ikoncept\Ico8Portal\Tests;
+namespace Ikoncept\Ico8\Tests;
 
-use Ikoncept\Ico8Portal\Exceptions\InvalidConfiguration;
-use Ikoncept\Ico8Portal\Portal;
-use Ikoncept\Ico8Portal\PortalClient;
-use Ikoncept\Ico8Portal\PortalFacade;
+use Ikoncept\Ico8\Exceptions\InvalidConfiguration;
+use Ikoncept\Ico8\Portal;
+use Ikoncept\Ico8\ApiClient;
+use Ikoncept\Ico8\PortalFacade;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Config;
 use Mockery;
@@ -13,7 +13,7 @@ use Mockery;
 class PortalTest extends TestCase
 {
 
-    /** @var \Ikoncept\Ico8Portal\PortalClient|\Mockery\Mock */
+    /** @var \Ikoncept\Ico8\ApiClient|\Mockery\Mock */
     protected $portalClient;
 
     /** @var int */
@@ -25,12 +25,12 @@ class PortalTest extends TestCase
     /** @var string */
     protected $host;
 
-    /** @var \Ikoncept\Ico8Portal\Portal */
+    /** @var \Ikoncept\Ico8\Portal */
     protected $portal;
 
     public function setUp(): void
     {
-        $this->portalClient = Mockery::mock(PortalClient::class);
+        $this->portalClient = Mockery::mock(ApiClient::class);
 
         $this->portalId = '91283';
         $this->tenantId = '2183091-213-1012312-231';
