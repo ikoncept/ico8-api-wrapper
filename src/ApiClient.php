@@ -46,8 +46,6 @@ class ApiClient
             'X-Tenant' => $this->tenantId,
         ])->get($this->host . $endpoint, $parameters);
 
-        dd($response);
-
         $response->throw();
 
         return $response->json();
