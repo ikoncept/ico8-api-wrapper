@@ -139,6 +139,19 @@ class Ico8
     }
 
     /**
+     * Fetch categories
+     *
+     * @param integer $mediaId
+     * @return object
+     */
+    public function categories(): object
+    {
+        $response = $this->performQuery('/categories');
+
+        return (object)$response;
+    }
+
+    /**
      * Call the query method on the authenticated client.
      *
      * @return array|null
