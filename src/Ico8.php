@@ -30,7 +30,7 @@ class Ico8
      * @param array $parameters
      * @return Collection
      */
-    public function fetch(array $parameters = []) : Collection
+    public function fetch(array $parameters = [])
     {
         $parameters = collect($this->filters)->mapWithKeys(function ($value, $filter) {
             return [sprintf('filter[%s]', $filter) => $value];
@@ -43,7 +43,9 @@ class Ico8
         
         $response = $this->performQuery('/media', $parameters);
 
-        return collect($response);
+        $response->data = collect($response->data);
+
+        return $response;
     }
 
     /**
