@@ -52,7 +52,9 @@ class ApiClient
 
             $response->throw();
 
-            return $response->json();
+            $json = $response->json();
+
+            return json_decode(json_encode($json));
         } catch (\Exception $exception) {
             $statusCode = $exception->response->getStatusCode();
 
