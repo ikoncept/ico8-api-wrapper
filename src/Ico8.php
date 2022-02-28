@@ -64,7 +64,7 @@ class Ico8
      * @param mixed $value
      * @return Ico8
      */
-    public function filter(string $filterName, mixed $value) : Ico8
+    public function filter(string $filterName, $value) : Ico8
     {
         $this->filters[$filterName] = $value;
 
