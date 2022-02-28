@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\Facade;
 /**
  * @see \Ikoncept\Ico8\Portal
  */
-class Media extends Facade
+class Ico8 extends Facade
 {
     protected static function getFacadeAccessor()
     {

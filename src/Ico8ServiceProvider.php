@@ -33,15 +33,15 @@ class Ico8ServiceProvider extends ServiceProvider
             return ApiClientFactory::createForConfig($icoConfig);
         });
 
-        $this->app->bind(Media::class, function () use ($icoConfig) {
+        $this->app->bind(Ico8::class, function () use ($icoConfig) {
             $this->guardAgainstInvalidConfiguration($icoConfig);
 
             $client = app(ApiClient::class);
 
-            return new Media($client);
+            return new Ico8($client);
         });
 
-        $this->app->alias(Media::class, 'ico8-api-wrapper');
+        $this->app->alias(Ico8::class, 'ico8-api-wrapper');
     }
 
     /**

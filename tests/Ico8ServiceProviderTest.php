@@ -3,7 +3,7 @@
 namespace Ikoncept\Ico8\Tests;
 
 use Ikoncept\Ico8\Exceptions\InvalidConfiguration;
-use Ikoncept\Ico8\Facades\Media;
+use Ikoncept\Ico8\Facades\Ico8;
 use Illuminate\Support\Facades\Config;
 use Portal;
 
@@ -17,6 +17,6 @@ class Ico8ServiceProviderTest extends TestCase
 
         $this->expectException(InvalidConfiguration::class);
 
-        Media::fetchMedia();
+        Ico8::fetchIco8();
     }
 }

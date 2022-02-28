@@ -34,7 +34,7 @@ Import the `Portal` client with typehinting
  */
 public function index(Portal $portal, Request $request) : Collection
 {
-    $response = $portal->fetchPortalMedia(['limit' => 20]);
+    $response = $portal->fetchPortalIco8(['limit' => 20]);
 
     return $response;
 }
@@ -43,13 +43,13 @@ public function index(Portal $portal, Request $request) : Collection
 ### Available methods
 **Fetch portal media**
 ```php
-$portal->fetchPortalMedia();
+$portal->fetchPortalIco8();
 ```
 _Fetch all related media to the specific portal_
 
 Optional parameters can be passed as below
 ```php
-$portal->fetchPortalMedia([
+$portal->fetchPortalIco8([
     'limit' => 15 // Paginate media, showing 15 items per page
 ]);
 ```
@@ -62,7 +62,7 @@ _Fetch portal info, for example the portal name_
 
 **Search portal media**
 ```php
-$portal->searchPortalMedia('searchQuery', ['limit' => 5]);
+$portal->searchPortalIco8('searchQuery', ['limit' => 5]);
 ```
 
 #### Parameters
@@ -73,7 +73,7 @@ Available filters for portalized media are:
 
 Example:
 ```php
-$response = $portal->fetchPortalMedia([
+$response = $portal->fetchPortalIco8([
     'limit' => 5,
     'filter[album]' => 1,
 ])
@@ -91,7 +91,7 @@ Sortable fields are:
 
 Example:
 ```php
-$response = $portal->fetchPortalMedia([
+$response = $portal->fetchPortalIco8([
     'sort' => '-name'
 ]);
 ```

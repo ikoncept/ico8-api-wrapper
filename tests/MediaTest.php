@@ -5,7 +5,7 @@ namespace Ikoncept\Ico8\Tests;
 use Ikoncept\Ico8\ApiClient;
 use Mockery;
 
-class MediaTest extends TestCase
+class Ico8Test extends TestCase
 {
 
     /** @var \Ikoncept\Ico8\ApiClient|\Mockery\Mock */

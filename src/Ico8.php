@@ -5,7 +5,7 @@ namespace Ikoncept\Ico8;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Traits\Macroable;
 
-class Media
+class Ico8
 {
     use Macroable;
 
@@ -23,9 +23,9 @@ class Media
     }
 
     /**
-     * Fetches Media from iCatServer API.
+     * Fetches Ico8 from iCatServer API.
      * Accepts an array of compatible filters,
-     * which will be merged to already configured filters on the Media instance
+     * which will be merged to already configured filters on the Ico8 instance
      *
      * @param array $parameters
      * @return Collection
@@ -50,9 +50,9 @@ class Media
      * Shorthand function to define a free text search.
      *
      * @param string $searchQuery
-     * @return Media
+     * @return Ico8
      */
-    public function search(string $searchQuery) : Media
+    public function search(string $searchQuery) : Ico8
     {
         return $this->filter('text', $searchQuery);
     }
@@ -62,9 +62,9 @@ class Media
      *
      * @param string $filterName
      * @param mixed $value
-     * @return Media
+     * @return Ico8
      */
-    public function filter(string $filterName, mixed $value) : Media
+    public function filter(string $filterName, mixed $value) : Ico8
     {
         $this->filters[$filterName] = $value;
 
@@ -75,9 +75,9 @@ class Media
      * Shorthand function to define page for query
      *
      * @param integer $page
-     * @return Media
+     * @return Ico8
      */
-    public function page(int $page) : Media
+    public function page(int $page) : Ico8
     {
         $this->page = $page;
 
@@ -88,9 +88,9 @@ class Media
      * Shorthand function to define sort for query
      *
      * @param string $sort
-     * @return Media
+     * @return Ico8
      */
-    public function sort(string $sort) : Media
+    public function sort(string $sort) : Ico8
     {
         $this->sort = $sort;
         
@@ -101,9 +101,9 @@ class Media
      * Shorthand function to define result limit for query
      *
      * @param integer $limit
-     * @return Media
+     * @return Ico8
      */
-    public function limit(int $limit) : Media
+    public function limit(int $limit) : Ico8
     {
         $this->limit = $limit;
         
@@ -114,9 +114,9 @@ class Media
      * Shorthand function to define relations to be included in response
      *
      * @param string $include
-     * @return Media
+     * @return Ico8
      */
-    public function include(string $include) : Media
+    public function include(string $include) : Ico8
     {
         $this->include = $include;
         
@@ -124,7 +124,7 @@ class Media
     }
 
     /**
-     * Fetch a single Media object
+     * Fetch a single Ico8 object
      *
      * @param integer $mediaId
      * @return object

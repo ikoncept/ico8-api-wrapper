@@ -1,6 +1,7 @@
 {
     "name": "ikoncept/ico8-api-wrapper",
     "description": "API wrapper for Icat portals",
+    "license": "proprietary",
     "type": "library",
     "authors": [
         {
@@ -35,7 +36,7 @@
                 "Ikoncept\\Ico8\\Ico8ServiceProvider"
             ],
             "aliases": {
-                "Media": "Ikoncept\\Ico8\\Facades\\Media"
+                "Ico8": "Ikoncept\\Ico8\\Facades\\Ico8"
             }
         }
     },
