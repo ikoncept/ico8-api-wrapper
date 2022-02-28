@@ -2,6 +2,7 @@
 
 namespace Ikoncept\Ico8\Tests;
 
+use Ikoncept\Ico8\Facades\Media;
 use Orchestra\Testbench\TestCase as Orchestra;
 use Ikoncept\Ico8\PortalFacade;
 use Ikoncept\Ico8\Ico8ServiceProvider;
@@ -33,7 +34,7 @@ abstract class TestCase extends Orchestra
     protected function getPackageAliases($app)
     {
         return [
-            'Portal' => PortalFacade::class,
+            'Media' => Media::class,
         ];
     }
 }

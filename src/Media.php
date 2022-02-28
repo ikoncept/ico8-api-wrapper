@@ -22,6 +22,14 @@ class Media
         $this->client = $client;
     }
 
+    /**
+     * Fetches Media from iCatServer API.
+     * Accepts an array of compatible filters,
+     * which will be merged to already configured filters on the Media instance
+     *
+     * @param array $parameters
+     * @return Collection
+     */
     public function fetch(array $parameters = []) : Collection
     {
         $parameters = collect($this->filters)->mapWithKeys(function ($value, $filter) {
@@ -38,11 +46,24 @@ class Media
         return collect($response);
     }
 
+    /**
+     * Shorthand function to define a free text search.
+     *
+     * @param string $searchQuery
+     * @return Media
+     */
     public function search(string $searchQuery) : Media
     {
         return $this->filter('text', $searchQuery);
     }
 
+    /**
+     * Shorthand function to define filters
+     *
+     * @param string $filterName
+     * @param mixed $value
+     * @return Media
+     */
     public function filter(string $filterName, mixed $value) : Media
     {
         $this->filters[$filterName] = $value;
@@ -50,6 +71,12 @@ class Media
         return $this;
     }
 
+    /**
+     * Shorthand function to define page for query
+     *
+     * @param integer $page
+     * @return Media
+     */
     public function page(int $page) : Media
     {
         $this->page = $page;
@@ -57,6 +84,12 @@ class Media
         return $this;
     }
 
+    /**
+     * Shorthand function to define sort for query
+     *
+     * @param string $sort
+     * @return Media
+     */
     public function sort(string $sort) : Media
     {
         $this->sort = $sort;
@@ -64,6 +97,12 @@ class Media
         return $this;
     }
 
+    /**
+     * Shorthand function to define result limit for query
+     *
+     * @param integer $limit
+     * @return Media
+     */
     public function limit(int $limit) : Media
     {
         $this->limit = $limit;
@@ -71,6 +110,12 @@ class Media
         return $this;
     }
 
+    /**
+     * Shorthand function to define relations to be included in response
+     *
+     * @param string $include
+     * @return Media
+     */
     public function include(string $include) : Media
     {
         $this->include = $include;
@@ -78,7 +123,12 @@ class Media
         return $this;
     }
 
-
+    /**
+     * Fetch a single Media object
+     *
+     * @param integer $mediaId
+     * @return object
+     */
     public function get(int $mediaId): object
     {
         $response = $this->performQuery('/media/' . $mediaId);

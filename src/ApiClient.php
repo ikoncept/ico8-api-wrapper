@@ -2,6 +2,8 @@
 
 namespace Ikoncept\Ico8;
 
+use Ikoncept\Ico8\Exceptions\ConnectionError;
+use Illuminate\Http\Client\ConnectionException;
 use Illuminate\Http\Client\Response;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Http;
@@ -41,13 +43,25 @@ class ApiClient
      */
     public function performQuery(string $endpoint, array $parameters = [])
     {
-        $response = Http::withHeaders([
-            'X-Token' => $this->apiKey,
-            'X-Tenant' => $this->tenantId,
-        ])->get($this->host . $endpoint, $parameters);
+        try {
+            $response = Http::acceptJson()->withHeaders([
+                'X-Token' => $this->apiKey,
+                'X-Tenant' => $this->tenantId,
+                'accept'
+            ])->get($this->host . $endpoint, $parameters);
 
-        $response->throw();
+            $response->throw();
 
-        return $response->json();
+            return $response->json();
+        } catch (\Exception $exception) {
+            $statusCode = $exception->response->getStatusCode();
+
+            switch ($statusCode) {
+                case 404:
+                    throw ConnectionError::missing($exception);
+                default:
+                    throw ConnectionError::general($exception);
+            }
+        }
     }
 }
