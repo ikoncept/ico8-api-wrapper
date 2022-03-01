@@ -131,8 +131,12 @@ class Ico8
      * @param integer $mediaId
      * @return object
      */
-    public function get(int $mediaId): object
+    public function get($mediaId)
     {
+        if (!$mediaId) {
+            return (object)['data'=>[]];
+        }
+        
         $response = $this->performQuery('/media/' . $mediaId);
 
         return (object)$response;
@@ -158,6 +162,10 @@ class Ico8
      */
     public function performQuery(string $endpoint, array $parameters = [])
     {
+        if (!config('ico8-api-wrapper.sign_url')) {
+            $parameters['url_type'] = 'static';
+        }
+
         return $this->client->performQuery(
             $endpoint,
             $parameters
