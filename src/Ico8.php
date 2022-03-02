@@ -155,6 +155,14 @@ class Ico8
         return (object)$response;
     }
 
+    public function staticUrl(string $uuid, string $size = "sm"): string
+    {
+        $baseUrl = config('ico8-api-wrapper.download_url');
+        $tenantId = $this->client->tenantId;
+
+        return sprintf("%s/%s/%s/%s", $baseUrl, $tenantId, $size, $uuid);
+    }
+
     /**
      * Call the query method on the authenticated client.
      *
